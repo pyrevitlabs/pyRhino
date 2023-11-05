@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pyRhino", "pyRhino.csproj", "{F4285C4E-A685-48DF-8A88-AD6B7F4787AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PyRhino", "PyRhino.csproj", "{F4285C4E-A685-48DF-8A88-AD6B7F4787AE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{D46FF76B-D48C-4C43-9BC5-9090C9F7E131}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bundler", "..\libs\Bundler\Bundler.csproj", "{9BD125FC-AA25-408B-962B-CF8815189576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{F4285C4E-A685-48DF-8A88-AD6B7F4787AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4285C4E-A685-48DF-8A88-AD6B7F4787AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4285C4E-A685-48DF-8A88-AD6B7F4787AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD125FC-AA25-408B-962B-CF8815189576}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD125FC-AA25-408B-962B-CF8815189576}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD125FC-AA25-408B-962B-CF8815189576}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD125FC-AA25-408B-962B-CF8815189576}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9BD125FC-AA25-408B-962B-CF8815189576} = {D46FF76B-D48C-4C43-9BC5-9090C9F7E131}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E5AE834-9FFD-478A-8A54-D6056D5B99C5}

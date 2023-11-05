@@ -9,17 +9,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="EmbeddedResources\**\*" />
-  </ItemGroup>
-  
-  <ItemGroup>
     <PackageReference Include="RhinoCommon" Version="7.13.21348.13001" IncludeAssets="compile;build" />
+    <ProjectReference Include="..\libs\Bundler\Bundler.csproj" />
+    <Reference Include="Rhino.Runtime.Code" HintPath="References\Rhino.Runtime.Code.dll" />
   </ItemGroup>
-  
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\*.*" />
+  </ItemGroup>
+
   <PropertyGroup Condition="$(Configuration) == 'Debug' AND $([MSBuild]::IsOSPlatform(Windows))">
-    <StartProgram>C:\Program Files\Rhino 7\System\Rhino.exe</StartProgram>
+    <StartProgram>C:\Program Files\Rhino 8\System\Rhino.exe</StartProgram>
     <StartArguments></StartArguments>
     <StartAction>Program</StartAction>
   </PropertyGroup>
-  
+
 </Project>

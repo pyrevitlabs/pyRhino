@@ -1,28 +1,54 @@
-﻿using Rhino;
-using System;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using SD = System.Drawing;
 
-namespace pyRhino
+using Rhino.UI;
+using Rhino.PlugIns;
+
+using PyRhino.Panels;
+using PyRhino.Bundles;
+
+namespace PyRhino
 {
-    ///<summary>
-    /// <para>Every RhinoCommon .rhp assembly must have one and only one PlugIn-derived
-    /// class. DO NOT create instances of this class yourself. It is the
-    /// responsibility of Rhino to create an instance of this class.</para>
-    /// <para>To complete plug-in information, please also see all PlugInDescription
-    /// attributes in AssemblyInfo.cs (you might need to click "Project" ->
-    /// "Show All Files" to see it in the "Solution Explorer" window).</para>
-    ///</summary>
-    public class pyRhinoPlugin : Rhino.PlugIns.PlugIn
+    public class PyRhinoPlugin : Rhino.PlugIns.PlugIn
     {
-        public pyRhinoPlugin()
+        public static PyRhinoBundler Bundler { get; } = new PyRhinoBundler();
+
+        public PyRhinoPlugin()
         {
             Instance = this;
+            
+            Rhino.UI.Panels.RegisterPanel(
+                this, typeof(PyRhinoPanel), "pyRhino", GetIcon(typeof(PyRhinoPanel).Name), PanelType.System);
         }
 
-        ///<summary>Gets the only instance of the pyRhinoPlugin plug-in.</summary>
-        public static pyRhinoPlugin Instance { get; private set; }
+        public override PlugInLoadTime LoadTime { get; } = PlugInLoadTime.AtStartup;
 
-        // You can override methods here to change the plug-in behavior on
-        // loading and shut down, add options pages to the Rhino _Option command
-        // and maintain plug-in wide options in a document.
+        public static PyRhinoPlugin Instance { get; private set; }
+
+        #region Plugin Resources
+        static readonly Assembly s_assembly = typeof(PyRhinoPlugin).Assembly;
+
+        static SD.Icon GetIcon(Assembly assembly, string name)
+        {
+            string assemblyName = assembly.GetName().Name;
+            try
+            {
+                using (Stream stream =
+                    assembly.GetManifestResourceStream($"{assemblyName}.Icons.{name}.png"))
+                {
+                    var img = SD.Image.FromStream(stream);
+                    return SD.Icon.FromHandle(((SD.Bitmap)img).GetHicon());
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static SD.Icon GetIcon(string name) => GetIcon(s_assembly, name);
+        #endregion
     }
 }
