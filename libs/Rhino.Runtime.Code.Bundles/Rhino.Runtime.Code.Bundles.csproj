@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="YamlDotNet" Version="11.2.1" />
+    <Reference Include="Rhino.Runtime.Code" HintPath="References\Rhino.Runtime.Code.dll" />
   </ItemGroup>
 
 </Project>

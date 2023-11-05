@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Bundler
+namespace Rhino.Runtime.Code.Bundles
 {
     public abstract class Bundler<TBundle> : IEnumerable<TBundle> where TBundle : Bundle
     {

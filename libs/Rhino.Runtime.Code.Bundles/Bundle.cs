@@ -3,17 +3,17 @@ using System.IO;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace Bundler
+namespace Rhino.Runtime.Code.Bundles
 {
     public abstract class Bundle
     {
         public static bool TryBundle<TBundle>(DirectoryInfo path, BundleVisitor visitor, out TBundle bundle)
             where TBundle : Bundle
         {
-            var data = BundleData.Empty;
+            var data = BundleDefinition.Empty;
             var dataFile = Path.Combine(path.FullName, BUNDLE_FILE);
             if (File.Exists(dataFile)
-                && BundleData.TryReadData(visitor, dataFile, out BundleData d))
+                && BundleDefinition.TryReadData(visitor, dataFile, out BundleDefinition d))
             {
                 data = d;
             }
@@ -25,20 +25,22 @@ namespace Bundler
 
         public Guid Id { get; } = Guid.NewGuid();
 
-        public DirectoryInfo Location { get; }
+        public DirectoryInfo Location { get; } = new DirectoryInfo(Path.GetTempPath());
 
-        public BundleData Data { get; }
+        public BundleDefinition Definition { get; } = BundleDefinition.Empty;
 
-        public Bundle(DirectoryInfo path, BundleData data)
+        public string Extension => Location.Extension;
+
+        public Bundle(DirectoryInfo path, BundleDefinition definition)
         {
             if (path is null)
                 throw new ArgumentNullException(nameof(path));
 
-            if (data is null)
-                throw new ArgumentNullException(nameof(data));
+            if (definition is null)
+                throw new ArgumentNullException(nameof(definition));
 
             Location = path;
-            Data = data;
+            Definition = definition;
         }
 
         public Bundle this[Guid id] => Children.First(b => b.Id == id);
@@ -50,10 +52,10 @@ namespace Bundler
             foreach (DirectoryInfo subdir in path.GetDirectories("*.*", SearchOption.AllDirectories))
             {
                 // find bundle metadata
-                var data = BundleData.Empty;
+                var data = BundleDefinition.Empty;
                 var dataFile = Path.Combine(subdir.FullName, BUNDLE_FILE);
                 if (File.Exists(dataFile)
-                    && BundleData.TryReadData(visitor, dataFile, out BundleData d))
+                    && BundleDefinition.TryReadData(visitor, dataFile, out BundleDefinition d))
                 {
                     data = d;
                 }

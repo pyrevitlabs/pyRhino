@@ -2,7 +2,7 @@
 using System.IO;
 using System.Collections.Generic;
 
-using Bundler;
+using Rhino.Runtime.Code.Bundles;
 using Rhino;
 
 namespace PyRhino.Bundles
@@ -18,7 +18,7 @@ namespace PyRhino.Bundles
 
         public override ILogger Logger => new RhinoLogger();
 
-        public override bool TryVisitBundle(DirectoryInfo path, BundleData data, out Bundle bundle)
+        public override bool TryVisitBundle(DirectoryInfo path, BundleDefinition data, out Bundle bundle)
         {
             bundle = new PyRhinoBundle(path, data);
 

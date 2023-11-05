@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 using Y = YamlDotNet.RepresentationModel;
 
-namespace Bundler
+namespace Rhino.Runtime.Code.Bundles
 {
-    public sealed class BundleData
+    public sealed class BundleDefinition
     {
-        public static BundleData Empty { get; } = new BundleData();
+        public static BundleDefinition Empty { get; } = new BundleDefinition();
 
-        public static bool TryReadData(BundleVisitor visitor, string path, out BundleData data)
+        public static bool TryReadData(BundleVisitor visitor, string path, out BundleDefinition data)
         {
             data = default;
 
@@ -24,7 +24,7 @@ namespace Bundler
 
                     Y.YamlNode root = yml.Documents[0].RootNode;
 
-                    data = new BundleData(path, (Y.YamlMappingNode)root);
+                    data = new BundleDefinition(path, (Y.YamlMappingNode)root);
                     return true;
                 }
             }
@@ -40,9 +40,9 @@ namespace Bundler
 
         public FileInfo FileInfo { get; }
 
-        BundleData() { }
+        BundleDefinition() { }
 
-        BundleData(string path, Y.YamlMappingNode root)
+        BundleDefinition(string path, Y.YamlMappingNode root)
         {
             _root = root;
 

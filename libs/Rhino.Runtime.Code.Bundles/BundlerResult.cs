@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bundler
+namespace Rhino.Runtime.Code.Bundles
 {
     public sealed class BundlerResult
     {

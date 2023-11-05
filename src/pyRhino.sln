@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PyRhino", "PyRhino.csproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{D46FF76B-D48C-4C43-9BC5-9090C9F7E131}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bundler", "..\libs\Bundler\Bundler.csproj", "{9BD125FC-AA25-408B-962B-CF8815189576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rhino.Runtime.Code.Bundles", "..\libs\Rhino.Runtime.Code.Bundles\Rhino.Runtime.Code.Bundles.csproj", "{9BD125FC-AA25-408B-962B-CF8815189576}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

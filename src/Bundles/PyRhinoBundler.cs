@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-using Bundler;
+using Rhino.Runtime.Code.Bundles;
 
 namespace PyRhino.Bundles
 {
-    public sealed class PyRhinoBundler : Bundler.Bundler<PyRhinoBundle>
+    public sealed class PyRhinoBundler : Bundler<PyRhinoBundle>
     {
         bool _init = false;
 

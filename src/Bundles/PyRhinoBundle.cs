@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-using Bundler;
+using Rhino.Runtime.Code.Bundles;
 
 namespace PyRhino.Bundles
 {
@@ -15,7 +15,7 @@ namespace PyRhino.Bundles
     {
         public BundleKind Kind { get; } = BundleKind.PushButton;
 
-        public PyRhinoBundle(DirectoryInfo path, BundleData data)
+        public PyRhinoBundle(DirectoryInfo path, BundleDefinition data)
             : base(path, data)
         {
         }

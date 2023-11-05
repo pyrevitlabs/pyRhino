@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Bundler
+namespace Rhino.Runtime.Code.Bundles
 {
     public abstract class BundleVisitor
     {
@@ -14,7 +14,7 @@ namespace Bundler
 
         public abstract ILogger Logger { get; }
 
-        public bool TryVisitBundle<TBundle>(DirectoryInfo path, BundleData data, out TBundle bundle)
+        public bool TryVisitBundle<TBundle>(DirectoryInfo path, BundleDefinition data, out TBundle bundle)
             where TBundle : Bundle
         {
             bundle = default;
@@ -29,6 +29,6 @@ namespace Bundler
             return false;
         }
 
-        public abstract bool TryVisitBundle(DirectoryInfo path, BundleData data, out Bundle bundle);
+        public abstract bool TryVisitBundle(DirectoryInfo path, BundleDefinition data, out Bundle bundle);
     }
 }
