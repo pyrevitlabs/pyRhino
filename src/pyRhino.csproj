@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\libs\Rhino.Runtime.Code.Bundles\Rhino.Runtime.Code.Bundles.csproj" />
+    <ProjectReference Include="..\libs\Rhino.Runtime.Code.Bundles\src\Rhino.Runtime.Code.Bundles.csproj" />
   </ItemGroup>
 
   <PropertyGroup Condition="$(Configuration) == 'Debug' AND $([MSBuild]::IsOSPlatform(Windows))">
